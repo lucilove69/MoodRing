@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --moodring-primary: #6A1B9A;
+  --moodring-secondary: #9C27B0;
+  --moodring-accent: #E1BEE7;
+  --moodring-glass: rgba(255, 255, 255, 0.85);
+  --vista-gradient: linear-gradient(to bottom, #FFFFFF 0%, #D4E4F7 50%, #A3C5F7 51%, #D4E4F7 100%);
+  --vista-border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: local('Segoe UI');
+}
+
+body {
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background: url('/images/vista-bg.jpg') center/cover fixed;
+  color: #000000;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.vista-window {
+  @apply rounded-lg shadow-xl;
+  background: var(--moodring-glass);
+  backdrop-filter: blur(10px);
+  border: var(--vista-border);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.vista-button {
+  @apply px-4 py-2 rounded-md transition-all duration-200;
+  background: var(--vista-gradient);
+  border: 1px solid #83A9D6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.vista-button:hover {
+  background: linear-gradient(to bottom, #E3F0FF 0%, #B9D7FF 50%, #8BB9FF 51%, #B9D7FF 100%);
+}
+
+.vista-input {
+  @apply px-3 py-2 rounded-md border border-gray-300 bg-white/90 backdrop-blur-sm;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.emoticon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 2px;
+}
+
+/* Aero Glass Effect */
+.aero-glass {
+  @apply backdrop-blur-md bg-white/80 border border-white/50 shadow-lg;
+}
+
+/* Profile Container */
+.profile-container {
+  @apply max-w-[970px] mx-auto p-6 vista-window;
+}
+
+/* Animated Elements */
+.mood-pulse {
+  animation: mood-pulse 2s infinite;
+}
+
+@keyframes mood-pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--moodring-primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--moodring-secondary);
+}
