@@ -55,7 +55,7 @@ const RegisterPage: React.FC = () => {
         createdAt: new Date().toISOString(),
         lastLogin: new Date().toISOString(),
         profileViews: 0,
-        status: 'New to MySpace',
+        status: 'New to MoodRing',
         mood: 'Happy',
         customCSS: '',
         customHTML: '<div class="myspace-default">Welcome to my profile!</div>',
@@ -78,7 +78,7 @@ const RegisterPage: React.FC = () => {
     <div className="flex flex-col items-center">
       <div className="w-full max-w-2xl">
         <div className="bg-blue-100 border-2 border-blue-400 rounded p-4 mb-6">
-          <h1 className="text-2xl font-bold text-center mb-2">Join MySpace Today!</h1>
+          <h1 className="text-2xl font-bold text-center mb-2">Join MoodRing Today!</h1>
           <p className="text-sm text-center">Sign up to connect with friends, share photos, and create your own space!</p>
         </div>
         
@@ -192,12 +192,12 @@ const RegisterPage: React.FC = () => {
         <div className="mt-6 text-center">
           <p className="mb-2">Already have an account?</p>
           <Link to="/login" className="myspace-button inline-block">
-            Log In to MySpace
+            Log In to MoodRing
           </Link>
         </div>
         
         <div className="mt-6 bg-yellow-50 border-2 border-yellow-300 p-4 text-sm">
-          <h3 className="font-bold mb-2">Why Join MySpace?</h3>
+          <h3 className="font-bold mb-2">Why Join MoodRing?</h3>
           <ul className="list-disc list-inside space-y-1">
             <li>Connect with friends and meet new people</li>
             <li>Share photos and music</li>

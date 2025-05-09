@@ -81,13 +81,13 @@ const LoginPage: React.FC = () => {
         <div className="mt-6 text-center">
           <p className="mb-2">Don't have an account?</p>
           <Link to="/register" className="myspace-button inline-block">
-            Sign Up for MySpace
+            Sign Up for MoodRing
           </Link>
         </div>
         
         <div className="mt-8 text-center">
           <img src="/images/browser-icons.gif" alt="Browser compatibility" className="h-8 mx-auto" />
-          <p className="text-xs mt-2">MySpace works best with Internet Explorer and Netscape</p>
+          <p className="text-xs mt-2">MoodRing works best with Internet Explorer and Netscape</p>
         </div>
       </div>
     </div>

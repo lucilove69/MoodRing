@@ -1,57 +1,180 @@
-# MySpace 2005 Clone
+# MoodRing - A Modern Social Media Platform
 
-A nostalgic recreation of the classic MySpace social network from 2005, built with modern web technologies.
+MoodRing is a feature-rich social media platform built with React, TypeScript, and modern web technologies. It features a beautiful Frutiger Aero-inspired design, real-time interactions, and a comprehensive set of features for social networking.
 
 ## Features
 
-- User registration and authentication
-- Customizable profile pages with HTML/CSS editor (like original MySpace)
-- Friends system with the iconic Top 8 friends feature
-- Music player with iframe integration
-- Bulletin board system
-- Comments sections on profiles
-- Profile visitor counter and stats
+### Core Features
+- User authentication and authorization
+- Real-time messaging and notifications
+- Custom emoticon system
+- Theme customization
+- Privacy controls
+- Responsive design
 
-## Tech Stack
-
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **Backend:** Node.js with Express
-- **Database:** LowDB (JSON file-based database)
-- **Authentication:** JWT (JSON Web Tokens)
+### Technical Features
+- TypeScript for type safety
+- React for UI components
+- Context API for state management
+- Custom hooks for reusable logic
+- Form validation
+- Error boundaries
+- Loading states
+- Security measures
+- Keyboard shortcuts
 
 ## Getting Started
 
+### Prerequisites
+- Node.js 16+
+- npm or yarn
+
+### Installation
 1. Clone the repository
-2. Install dependencies:
-   ```
-   npm install
-   ```
-3. Start the development server:
-   ```
-   npm run dev:all
-   ```
-   This will start both the frontend (Vite) and backend (Express) servers.
-
-## Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-```
-JWT_SECRET=yoursecretkey
-PORT=3001
+```bash
+git clone https://github.com/yourusername/moodring.git
+cd moodring
 ```
 
-## Default User
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
 
-The system comes with a default "Tom" user (MySpace's co-founder who was everyone's first friend):
-- Email: tom@myspace.com
-- Password: password
+3. Start the development server
+```bash
+npm run dev
+# or
+yarn dev
+```
 
 ## Project Structure
 
-- `/src` - Frontend React application
-- `/server` - Backend Express server
-- `/public` - Static assets including images and fonts
+```
+project/
+├── src/
+│   ├── components/     # React components
+│   ├── context/       # Context providers
+│   ├── hooks/         # Custom hooks
+│   ├── pages/         # Page components
+│   ├── styles/        # Global styles
+│   ├── types/         # TypeScript types
+│   └── utils/         # Utility functions
+├── public/            # Static assets
+└── package.json       # Project configuration
+```
+
+## Components
+
+### Layout
+The `Layout` component provides the main structure of the application, including:
+- Responsive sidebar
+- Top navigation
+- Theme toggle
+- Notification center
+- Settings modal
+
+### Authentication
+The `Auth` component handles user authentication with:
+- Login
+- Registration
+- Password recovery
+- Form validation
+- Error handling
+
+### Notification Center
+The `NotificationCenter` component manages notifications with:
+- Real-time updates
+- Browser notifications
+- Notification types
+- Read/unread states
+
+### Error Boundary
+The `ErrorBoundary` component provides graceful error handling:
+- Catches runtime errors
+- Displays user-friendly error messages
+- Provides recovery options
+
+### Loading
+The `Loading` component shows loading states:
+- Customizable sizes
+- Full-screen option
+- Loading text
+- Smooth animations
+
+## Utilities
+
+### Hooks
+- `useLocalStorage`: Persistent storage with type safety
+- `useTheme`: Theme management
+- `useOnlineStatus`: User presence tracking
+- `useWindowSize`: Responsive layouts
+- `useScrollPosition`: Scroll-based effects
+- `useMediaQuery`: Responsive design
+- `useKeyboardShortcut`: Keyboard navigation
+- `useClipboard`: Copy/paste functionality
+- `useNotifications`: Browser notifications
+- `useFileUpload`: File handling
+- `useAnimation`: Animation control
+
+### Validation
+The validation system provides:
+- Form validation
+- Field validation
+- Common validation rules
+- Custom validation rules
+- Error messages
+
+### Security
+Security features include:
+- Token management
+- CSRF protection
+- XSS prevention
+- Input sanitization
+- Password hashing
+- Secure storage
+- Rate limiting
+- Content Security Policy
+- Security headers
+
+## Theme System
+
+The theme system uses CSS variables for consistent styling:
+- Light/dark mode
+- Custom colors
+- Typography
+- Spacing
+- Border radius
+- Transitions
+- Z-index layers
+- Glassmorphism effects
+
+## Keyboard Shortcuts
+
+- `T`: Toggle theme
+- `M`: Toggle sidebar
+- `S`: Toggle settings
+- `H`: Go to home
+- `P`: Go to profile
+- `N`: Go to notifications
+- `C`: Go to messages
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
-This project is for educational purposes only. MySpace is a registered trademark of its respective owners.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Frutiger Aero design inspiration
+- MySpace for emoticon inspiration
+- React and TypeScript communities

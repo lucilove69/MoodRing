@@ -1,0 +1,174 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  bio           String?
+  location      String?
+  theme         String?   @default("light")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  posts         Post[]
+  comments      Comment[]
+  likes         Like[]
+  follows       Follow[]  @relation("following")
+  followers     Follow[]  @relation("followers")
+  blockedUsers  BlockedUser[] @relation("blocker")
+  blockedBy     BlockedUser[] @relation("blocked")
+  savedPosts    SavedPost[]
+  collections   Collection[]
+  scheduledPosts ScheduledPost[]
+}
+
+model Post {
+  id          String    @id @default(cuid())
+  content     String
+  media       Json?     // Store media URLs as JSON
+  visibility  String    @default("public") // public, private, followers
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    String
+  comments    Comment[]
+  likes       Like[]
+  savedBy     SavedPost[]
+  scheduledFor DateTime?
+  status      String    @default("draft") // draft, published, scheduled
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+
+  @@unique([userId, postId])
+}
+
+model Follow {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  follower    User     @relation("following", fields: [followerId], references: [id], onDelete: Cascade)
+  followerId  String
+  following   User     @relation("followers", fields: [followingId], references: [id], onDelete: Cascade)
+  followingId String
+
+  @@unique([followerId, followingId])
+}
+
+model BlockedUser {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  blocker   User     @relation("blocker", fields: [blockerId], references: [id], onDelete: Cascade)
+  blockerId String
+  blocked   User     @relation("blocked", fields: [blockedId], references: [id], onDelete: Cascade)
+  blockedId String
+
+  @@unique([blockerId, blockedId])
+}
+
+model SavedPost {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+  collection Collection? @relation(fields: [collectionId], references: [id])
+  collectionId String?
+
+  @@unique([userId, postId])
+}
+
+model Collection {
+  id          String      @id @default(cuid())
+  name        String
+  description String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  savedPosts  SavedPost[]
+}
+
+model ScheduledPost {
+  id          String   @id @default(cuid())
+  content     String
+  media       Json?
+  scheduledFor DateTime
+  status      String   @default("pending") // pending, published, failed
+  error       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+}
+
+// Indexes for performance
+model Post {
+  @@index([authorId])
+  @@index([createdAt])
+  @@index([visibility])
+}
+
+model Comment {
+  @@index([postId])
+  @@index([authorId])
+}
+
+model Like {
+  @@index([postId])
+  @@index([userId])
+}
+
+model Follow {
+  @@index([followerId])
+  @@index([followingId])
+}
+
+model BlockedUser {
+  @@index([blockerId])
+  @@index([blockedId])
+}
+
+model SavedPost {
+  @@index([userId])
+  @@index([postId])
+  @@index([collectionId])
+}
+
+model Collection {
+  @@index([userId])
+}
+
+model ScheduledPost {
+  @@index([userId])
+  @@index([scheduledFor])
+  @@index([status])
+} 
